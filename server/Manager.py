@@ -52,11 +52,11 @@ class Manager:
             await self.server.historize_node_data_change(
                 variable, period=timedelta(minutes=1), count=100)
 
-    async def add_folder_to_object(self, objectRef, folder):
+    async def addFolderToObject(self, objectRef, folder):
         self.folders[folder] = await objectRef.add_folder(self.ID, folder)
         return self.folders[folder]
 
-    async def add_method_to_object(self, objectRef, methodName, methodRef, arguments, output):
+    async def addMethodToObject(self, objectRef, methodName, methodRef, arguments, output):
         self.methods[methodName] = await objectRef.add_method(
             self.ID, methodName, methodRef, arguments, output)
 
