@@ -10,6 +10,9 @@ async def main():
 
     await manager.server.start()
 
+    tmp = await hiTemp(manager, room)
+    t = tmp.getValue()
+
     while True:
         await asyncio.sleep(1)
 
