@@ -18,6 +18,8 @@ async def main():
     refrigerantActive = await initRefrigerantActive(manager, room)
     isOnCoolingWithServer = await initIsOnCoolingWithServer(manager, room)
 
+    await manager.activateHistorizingForVariables([currentTemp])
+
     await manager.server.start()
 
     while True:
