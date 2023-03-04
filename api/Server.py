@@ -1,6 +1,6 @@
 from server.Imports import *
 from server.Manager import Manager as mng
-from server.AccessParams import AccessParams as mode
+from server.AccessParams import AccessParams_t as mode
 
 
 async def serverInitStart(server: mng):

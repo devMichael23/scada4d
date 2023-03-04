@@ -36,3 +36,6 @@ class AccessParams:
 
     def wrh(self):
         return self.wr() + self.history()
+
+
+AccessParams_t = AccessParams()
