@@ -6,7 +6,7 @@ from api.SCADAVars import SCADAVar
 
 
 async def serverInitStart(server: mng):
-    await server.createServer("opc.tcp://0.0.0.0:4840/", "Server Room")
+    await server.createServer("opc.tcp://0.0.0.0:1984/", "Server Room")
     node = await server.addNode("Room #1")
     return node
 
