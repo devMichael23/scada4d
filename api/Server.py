@@ -11,34 +11,46 @@ async def serverInitStart(server: mng):
     return node
 
 
-async def currentTemp(server: mng, room) -> SCADAVar:
+async def initCurrentTemp(server: mng, room) -> SCADAVar:
     var = await server.addVariableToObject(room, "Current_Temp", 50, int64_t, mode.rh())
     return SCADAVar(var)
 
 
-async def hiTemp(server: mng, room) -> SCADAVar:
+async def initHiTemp(server: mng, room) -> SCADAVar:
     var = await server.addVariableToObject(room, "Current_Temp", 50, int64_t, mode.wr())
     return SCADAVar(var)
 
 
-async def hiHiTemp(server: mng, room) -> SCADAVar:
+async def initHiHiTemp(server: mng, room) -> SCADAVar:
     var = await server.addVariableToObject(room, "Current_Temp", 50, int64_t, mode.wr())
     return SCADAVar(var)
 
 
-async def loTemp(server: mng, room) -> SCADAVar:
+async def initLoTemp(server: mng, room) -> SCADAVar:
     var = await server.addVariableToObject(room, "Current_Temp", 50, int64_t, mode.wr())
     return SCADAVar(var)
 
 
-async def loLoTemp(server: mng, room) -> SCADAVar:
+async def initLoLoTemp(server: mng, room) -> SCADAVar:
     var = await server.addVariableToObject(room, "Current_Temp", 50, int64_t, mode.wr())
     return SCADAVar(var)
 
 
-async def setupTemp(server: mng, room) -> SCADAVar:
-    return await currentTemp(server, room), \
-        await hiTemp(server, room), \
-        await hiHiTemp(server, room), \
-        await loTemp(server, room), \
-        await loLoTemp(server, room)
+async def initIsServerHarmed(server: mng, room) -> SCADAVar:
+    var = await server.addVariableToObject(room, "isServerHarmed", false_t, bool_t, mode.read())
+    return SCADAVar(var)
+
+
+async def initFailureProbability(server: mng, room) -> SCADAVar:
+    var = await server.addVariableToObject(room, "FailureProbability", 10, int64_t, mode.wr())
+    return SCADAVar(var)
+
+
+async def initRefrigerantActive(server: mng, room) -> SCADAVar:
+    var = await server.addVariableToObject(room, "RefrigerantActive", false_t, bool_t, mode.wr())
+    return SCADAVar(var)
+
+
+async def initIsOnCoolingWithServer(server: mng, room) -> SCADAVar:
+    var = await server.addVariableToObject(room, "IsOnCoolingWithServer", false_t, bool_t, mode.read())
+    return SCADAVar(var)

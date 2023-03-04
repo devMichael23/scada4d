@@ -7,3 +7,9 @@ class SCADAVar:
 
     async def getValue(self):
         return await self.__variable.get_value()
+
+    async def getVar(self):
+        return await self.__variable
+
+    async def setValue(self, value):
+        await self.__variable.set_value(value)
