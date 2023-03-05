@@ -69,7 +69,7 @@ def __getScenario(isCoolingOnServerVar: bool) -> int:
                     print("Error. Try again")
 
 
-def getScenarioParamsWithMenu() -> (bool, int):
+async def getScenarioParamsWithMenu() -> (bool, int):
     isCoolingOnServerVar = __getIsCoolingOnServer()
     scenarioVar = __getScenario(isCoolingOnServerVar)
 
