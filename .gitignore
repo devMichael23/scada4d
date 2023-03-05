@@ -1,3 +1,4 @@
 pyproject.toml
 Other/*
 /.idea/*
+server/database/server_room.sql
