@@ -20,8 +20,6 @@ async def main():
 
     await manager.server.start()
 
-    await increaseTemperature(currentTemp, 80)
-
     while True:
         await asyncio.sleep(1)
 
