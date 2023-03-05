@@ -1,8 +1,7 @@
-from api.Imports import *
-from api.Vars import *
+from api.APIImports import *
 
 
-class Manager:
+class ServerManager:
     def __init__(self):
         self.nodes = dict()
         self.folders = dict()
@@ -52,13 +51,3 @@ class Manager:
         for variable in listOfVariables:
             await self.server.historize_node_data_change(
                 variable, period=timedelta(minutes=1), count=100)
-
-    async def addFolderToObject(self, objectRef, folder):
-        self.folders[folder] = await objectRef.add_folder(self.ID, folder)
-        return self.folders[folder]
-
-    async def addMethodToObject(self, objectRef, methodName, methodRef, arguments, output):
-        self.methods[methodName] = await objectRef.add_method(
-            self.ID, methodName, methodRef, arguments, output)
-
-        return self.methods[methodName]

@@ -1,4 +1,4 @@
-from api.Imports import *
+from api.APIImports import *
 
 NoSecurity = [ua.SecurityPolicyType.NoSecurity]
 EventNotifier = ua.AttributeIds.EventNotifier

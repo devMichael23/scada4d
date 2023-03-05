@@ -1,6 +1,4 @@
-import asyncio
-from api.Server import *
-from api.Vars import *
+from api.APIImports import *
 
 manager = mng()
 
@@ -21,6 +19,8 @@ async def main():
     await manager.activateHistorizingForVariables([currentTemp.getVar()])
 
     await manager.server.start()
+
+    await increaseTemperature(currentTemp, 80)
 
     while True:
         await asyncio.sleep(1)

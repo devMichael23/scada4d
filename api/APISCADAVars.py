@@ -1,4 +1,4 @@
-from api.Imports import *
+from api.APIImports import *
 
 
 class SCADAVar:

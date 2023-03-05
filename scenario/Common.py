@@ -1,7 +1,4 @@
-from api.Imports import *
-from api.Vars import *
-from api.SCADAVars import SCADAVar
-from api.Checkers import *
+from api.APIImports import *
 
 
 def __showScenarios():
