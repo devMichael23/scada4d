@@ -1,4 +1,5 @@
-from server.Imports import *
+from api.Imports import *
+from api.Vars import *
 
 
 class Manager:

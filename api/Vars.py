@@ -1,4 +1,8 @@
-from server.Imports import *
+from api.Imports import *
+
+NoSecurity = [ua.SecurityPolicyType.NoSecurity]
+EventNotifier = ua.AttributeIds.EventNotifier
+SubscribeToEvents = ua.EventNotifier.SubscribeToEvents
 
 double_t = ua.VariantType.Double
 bool_t = ua.VariantType.Boolean
