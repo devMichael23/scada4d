@@ -16,6 +16,19 @@ async def main():
     refrigerantActive = await initRefrigerantActive(manager, room)
     isOnCoolingWithServer = await initIsOnCoolingWithServer(manager, room)
 
+    serverValues = {
+        "manager": manager,
+        "currentTemp": currentTemp,
+        "hiTemp": hiTemp,
+        "hiHiTemp": hiHiTemp,
+        "loTemp": loTemp,
+        "loLoTemp": loLoTemp,
+        "isServerHarmed": isServerHarmed,
+        "failureProbability": failureProbability,
+        "refrigerantActive": refrigerantActive,
+        "isOnCoolingWithServer": isOnCoolingWithServer,
+    }
+
     await manager.activateHistorizingForVariables([currentTemp.getVar()])
 
     await manager.server.start()
