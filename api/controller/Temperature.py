@@ -1,4 +1,4 @@
-from api.APIImports import *
+from imports.General import *
 
 
 async def __changeTemperature(temperature: SCADAVar,

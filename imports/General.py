@@ -4,12 +4,15 @@ from asyncua.server.history_sql import HistorySQLite
 from datetime import timedelta
 import asyncio
 
-from api.APIVars import *
+from api.other.Checkers import *
+
+from api.other.Vars import *
 
 from server.ServerManager import ServerManager as mng
 from server.AccessParams import AccessParams_t as mode
 
-from api.APIImports import *
-from api.APIServer import *
+from api.init.Server import *
 
-from api.APITemperatureManager import *
+from api.controller.Temperature import *
+
+from scenario.Common import *

@@ -1,5 +1,5 @@
-from api.APIImports import *
-from api.APISCADAVars import SCADAVar
+from imports.General import *
+from api.other.SCADAVars import SCADAVar
 
 NoSecurity = [ua.SecurityPolicyType.NoSecurity]
 EventNotifier = ua.AttributeIds.EventNotifier

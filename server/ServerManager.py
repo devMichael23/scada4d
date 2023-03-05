@@ -1,24 +1,25 @@
-from api.APIImports import *
+from imports.General import *
 
 
 class ServerManager:
     def __init__(self):
+        self.ID = 0
         self.nodes = dict()
         self.folders = dict()
         self.methods = dict()
         self.server = Server(iserver=None)
-        self.ID = 0
 
-    async def createServer(self, endPoint, serverName):
+    async def createServer(self, host, serverName):
         logging.basicConfig(level=logging.CRITICAL)
 
         self.server.iserver.history_manager.set_storage(
-            HistorySQLite("server/database/server_room.sql"))
+            HistorySQLite("server/database/server_room.sql")
+        )
 
         await self.server.init()
         await self.server.nodes.server.delete()
         self.server.set_security_policy(NoSecurity)
-        self.server.set_endpoint(endPoint)
+        self.server.set_endpoint(host)
         self.server.set_server_name(serverName)
 
         self.ID = await self.server.register_namespace(
@@ -47,7 +48,8 @@ class ServerManager:
 
         return variable
 
-    async def activateHistorizingForVariables(self, listOfVariables):
+    async def startHistoryOfVar(self, listOfVariables):
         for variable in listOfVariables:
             await self.server.historize_node_data_change(
-                variable, period=timedelta(minutes=1), count=100)
+                variable, period=timedelta(minutes=1), count=100
+            )

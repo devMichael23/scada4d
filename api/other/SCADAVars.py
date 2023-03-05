@@ -1,4 +1,4 @@
-from api.APIImports import *
+import asyncio
 
 
 class SCADAVar:

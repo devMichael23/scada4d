@@ -1,4 +1,4 @@
-from api.APIImports import *
+from imports.General import *
 
 manager = mng()
 
@@ -29,7 +29,7 @@ async def main():
         "isOnCoolingWithServer": isOnCoolingWithServer,
     }
 
-    await manager.activateHistorizingForVariables([currentTemp.getVar()])
+    await manager.startHistoryOfVar([currentTemp.getVar()])
 
     await manager.server.start()
 
