@@ -57,7 +57,7 @@ def __getScenario(isCoolingOnServerVar: bool) -> int:
         print()
         choice = input("> ")
 
-        if isInt(choice):
+        if checkIsInt(choice):
             if __checkIntChoice(isCoolingOnServerVar, int(choice)):
                 return int(choice)
         else:
@@ -69,7 +69,7 @@ def __getScenario(isCoolingOnServerVar: bool) -> int:
                     print("Error. Try again")
 
 
-async def getScenarioParamsWithMenu() -> (bool, int):
+async def commonScenarioMenu() -> (bool, int):
     isCoolingOnServerVar = __getIsCoolingOnServer()
     scenarioVar = __getScenario(isCoolingOnServerVar)
 

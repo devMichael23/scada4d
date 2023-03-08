@@ -4,7 +4,7 @@ manager = mng()
 
 
 async def main():
-    room = await serverInitStart(manager)
+    room = await initServerStart(manager)
 
     currentTemp = await initCurrentTemp(manager, room)
     hiTemp = await initHiTemp(manager, room)

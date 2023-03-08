@@ -1,7 +1,7 @@
 from random import randint
 
 
-def isInt(var) -> bool:
+def checkIsInt(var) -> bool:
     try:
         int(var)
         return True
@@ -9,5 +9,5 @@ def isInt(var) -> bool:
         return False
 
 
-def isServerHarmedWithProbability(probability: int) -> bool:
+def checkIsServerHarmedWithProbability(probability: int) -> bool:
     return randint(0, 100) <= probability

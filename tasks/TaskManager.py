@@ -8,7 +8,7 @@ class TaskManager:
     def __init__(self, task):
         self.__loop = asyncio.get_event_loop()
         self.__task = self.__loop.create_task(task)
-        self.__msg = msgNotSetMsg_t
+        self.__msg = msgNotSet_t
 
     async def cancel(self, msg):
         self.__task.cancel()

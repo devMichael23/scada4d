@@ -17,10 +17,10 @@ async def sc_1():
 
 
 async def startScenario():
-    isCoolingOnServer, scenario = await getScenarioParamsWithMenu()
+    isCoolingOnServer, scenario = await commonScenarioMenu()
 
     scTask = TaskManager(sc_1())
-    lTask = TaskManager(startLoopHarmedServer(scTask, 40))
+    lTask = TaskManager(controllerLoopHarmedServer(scTask, 10))
 
     while not await lTask.getTask():
         await asyncio.sleep(0)

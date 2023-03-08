@@ -2,9 +2,9 @@ from imports.General import *
 import time
 
 
-async def startLoopHarmedServer(task: TaskManager, probability: int):
-    while not isServerHarmedWithProbability(probability):
+async def controllerLoopHarmedServer(task: TaskManager, probability: int):
+    while not checkIsServerHarmedWithProbability(probability):
         print("No")
         await asyncio.sleep(10)
-    await task.cancel(serverHarmedMsg_t)
+    await task.cancel(msgServerHarmed)
     return True

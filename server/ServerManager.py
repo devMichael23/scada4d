@@ -18,7 +18,7 @@ class ServerManager:
 
         await self.server.init()
         await self.server.nodes.server.delete()
-        self.server.set_security_policy(NoSecurity)
+        self.server.set_security_policy(varNoSecurity)
         self.server.set_endpoint(host)
         self.server.set_server_name(serverName)
 
@@ -32,7 +32,7 @@ class ServerManager:
             self.server.get_objects_node().add_object(self.ID, node)
 
         await self.nodes[node].set_attr_bit(
-            EventNotifier, SubscribeToEvents)
+            varEventNotifier, varSubscribeToEvents)
 
         return self.nodes[node]
 

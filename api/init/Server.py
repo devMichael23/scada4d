@@ -1,7 +1,7 @@
 from imports.General import *
 
 
-async def serverInitStart(serverManager: mng):
+async def initServerStart(serverManager: mng):
     await serverManager.createServer("opc.tcp://0.0.0.0:1984/", "Server Room")
     node = await serverManager.addNode("Room #1")
     return node

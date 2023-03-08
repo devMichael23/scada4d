@@ -1,9 +1,9 @@
 from imports.General import *
 from api.other.SCADAVars import SCADAVar
 
-NoSecurity = [ua.SecurityPolicyType.NoSecurity]
-EventNotifier = ua.AttributeIds.EventNotifier
-SubscribeToEvents = ua.EventNotifier.SubscribeToEvents
+varNoSecurity = [ua.SecurityPolicyType.NoSecurity]
+varEventNotifier = ua.AttributeIds.EventNotifier
+varSubscribeToEvents = ua.EventNotifier.SubscribeToEvents
 
 double_t = ua.VariantType.Double
 bool_t = ua.VariantType.Boolean
@@ -14,13 +14,13 @@ serverValues_t = dict[str, SCADAVar]
 true_t = 0.1
 false_t = 0.00
 
-manager_d = "manager"
-currentTemp_d = "currentTemp"
-hiTemp_d = "hiTemp"
-hiHiTemp_d = "hiHiTemp"
-loTemp_d = "loTemp"
-loLoTemp_d = "loLoTemp"
-isServerHarmed_d = "isServerHarmed"
-failureProbability_d = "failureProbability"
-refrigerantActive_d = "refrigerantActive"
-isOnCoolingWithServer_d = "isOnCoolingWithServer"
+idManager = "manager"
+idCurrentTemp = "currentTemp"
+idHiTemp = "hiTemp"
+idHiHiTemp = "hiHiTemp"
+idLoTemp = "loTemp"
+idLoLoTemp = "loLoTemp"
+idIsServerHarmed = "isServerHarmed"
+idFailureProbability = "failureProbability"
+idRefrigerantActive = "refrigerantActive"
+idIsOnCoolingWithServer = "isOnCoolingWithServer"

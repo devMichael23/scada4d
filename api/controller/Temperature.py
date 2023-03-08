@@ -18,43 +18,43 @@ async def __changeTemperature(temperature: SCADAVar,
                 await asyncio.sleep(1)
 
 
-async def increaseTemperature(temperature: SCADAVar, limitValue):
+async def controllerTemperatureIncrease(temperature: SCADAVar, limitValue):
     await __changeTemperature(temperature,
                               await temperature.getValue(),
                               limitValue,
                               code='+')
 
 
-async def reduceTemperature(temperature: SCADAVar, limitValue):
+async def controllerTemperatureReduce(temperature: SCADAVar, limitValue):
     await __changeTemperature(temperature,
                               await temperature.getValue(),
                               limitValue,
                               code='-')
 
 
-async def increaseTemperatureToLo(serverValues: serverValues_t):
-    await reduceTemperature(
-        serverValues[currentTemp_d],
-        await serverValues[loTemp_d].getValue()
+async def controllerTemperatureReduceToLo(serverValues: serverValues_t):
+    await controllerTemperatureReduce(
+        serverValues[idCurrentTemp],
+        await serverValues[idLoTemp].getValue()
     )
 
 
-async def increaseTemperatureToLoLo(serverValues: serverValues_t):
-    await reduceTemperature(
-        serverValues[currentTemp_d],
-        await serverValues[loLoTemp_d].getValue()
+async def controllerTemperatureReduceToLoLo(serverValues: serverValues_t):
+    await controllerTemperatureReduce(
+        serverValues[idCurrentTemp],
+        await serverValues[idLoLoTemp].getValue()
     )
 
 
-async def increaseTemperatureToHi(serverValues: serverValues_t):
-    await reduceTemperature(
-        serverValues[currentTemp_d],
-        await serverValues[hiTemp_d].getValue()
+async def controllerTemperatureIncreaseToHi(serverValues: serverValues_t):
+    await controllerTemperatureIncrease(
+        serverValues[idCurrentTemp],
+        await serverValues[idHiTemp].getValue()
     )
 
 
-async def increaseTemperatureToHiHi(serverValues: serverValues_t):
-    await reduceTemperature(
-        serverValues[currentTemp_d],
-        await serverValues[hiHiTemp_d].getValue()
+async def controllerTemperatureIncreaseToHiHi(serverValues: serverValues_t):
+    await controllerTemperatureIncrease(
+        serverValues[idCurrentTemp],
+        await serverValues[idHiHiTemp].getValue()
     )
