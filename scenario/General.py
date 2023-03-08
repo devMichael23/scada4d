@@ -1,15 +1,18 @@
 import asyncio
 
-from imports.General import *
+from core.Vars import *
+
+from api.other.Logging import *
+from api.controller.Harmed import *
+
 from scenario.Common import *
-import time
 
 
 async def sc_1():
     index = 0
     while True:
         try:
-            print(index)
+            apiLogDebug(index)
             index += 1
             await asyncio.sleep(1)
         except cancelledException_t:
@@ -30,4 +33,4 @@ async def generalScenarioStart(scadaVars: scadaVars_t):
     while not await lTask.getTask():
         await asyncio.sleep(0)
 
-    print(scTask.getMsg(), isCoolingOnServer, scenario)
+    apiLogCritical(scTask.getMsg() + " " + str(isCoolingOnServer) + " " + str(scenario))

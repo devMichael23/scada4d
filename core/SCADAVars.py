@@ -1,6 +1,3 @@
-import asyncio
-
-
 class SCADAVar:
     def __init__(self, variable):
         self.__variable = variable

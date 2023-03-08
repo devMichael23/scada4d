@@ -1,23 +1,29 @@
-from imports.General import *
+import asyncio
 
-manager = mng()
+from api.init.Server import *
+from api.other.Logging import *
+
+from scenario.General import *
+
+
+core = CoreManager("opc.tcp://0.0.0.0:1984/", "Server Room")
 
 
 async def main():
-    room = await initServerStart(manager)
+    room = await initServerStart(core)
 
-    currentTemp = await initCurrentTemp(manager, room)
-    hiTemp = await initHiTemp(manager, room)
-    hiHiTemp = await initHiHiTemp(manager, room)
-    loTemp = await initLoTemp(manager, room)
-    loLoTemp = await initLoLoTemp(manager, room)
-    isServerHarmed = await initIsServerHarmed(manager, room)
-    failureProbability = await initFailureProbability(manager, room)
-    refrigerantActive = await initRefrigerantActive(manager, room)
-    isOnCoolingWithServer = await initIsOnCoolingWithServer(manager, room)
+    currentTemp = await initCurrentTemp(core, room)
+    hiTemp = await initHiTemp(core, room)
+    hiHiTemp = await initHiHiTemp(core, room)
+    loTemp = await initLoTemp(core, room)
+    loLoTemp = await initLoLoTemp(core, room)
+    isServerHarmed = await initIsServerHarmed(core, room)
+    failureProbability = await initFailureProbability(core, room)
+    refrigerantActive = await initRefrigerantActive(core, room)
+    isOnCoolingWithServer = await initIsOnCoolingWithServer(core, room)
 
     scadaVars = {
-        "manager": manager,
+        "core": core,
         "currentTemp": currentTemp,
         "hiTemp": hiTemp,
         "hiHiTemp": hiHiTemp,
@@ -29,9 +35,9 @@ async def main():
         "isOnCoolingWithServer": isOnCoolingWithServer,
     }
 
-    await manager.startHistoryOfVar([currentTemp.getVar()])
+    await core.coreStartHistoryOfVar([currentTemp.getVar()])
 
-    await manager.server.start()
+    await core.getCoreServer().start()
 
     await generalScenarioStart(scadaVars)
 
@@ -43,4 +49,4 @@ if __name__ == '__main__':
     loop = asyncio.get_event_loop()
     loop.set_debug(True)
     loop.run_until_complete(main())
-    manager.server.stop()
+    core.getCoreServer().stop()

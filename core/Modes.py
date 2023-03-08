@@ -1,7 +1,7 @@
-from imports.General import *
+from asyncua import ua
 
 
-class AccessParams:
+class ModeManager:
     def __init__(self):
         self.__read = [
             (ua.AttributeIds.AccessLevel, ua.AccessLevel.CurrentRead),
@@ -36,6 +36,3 @@ class AccessParams:
 
     def wrh(self):
         return self.wr() + self.history()
-
-
-AccessParams_t = AccessParams()

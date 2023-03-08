@@ -1,4 +1,5 @@
-from imports.General import *
+from api.other.Logging import *
+from api.other.Checkers import *
 
 
 def __showScenarios():
@@ -26,12 +27,12 @@ def __showScenarios():
 def __checkIntChoice(bool_var: bool, int_var: int) -> bool:
     if 0 <= int(int_var) < 10:
         if (not bool_var) and (int(int_var) >= 7):
-            print("Error. CC not on Server Side, but this scenario can start only if CC on Server Side. Try Again")
+            apiLogError("CC not on Server Side, but this scenario can start only if CC on Server Side. Try Again")
             return False
         else:
             return True
     else:
-        print("Error. Try again")
+        apiLogError("Try again")
         return False
 
 
@@ -48,7 +49,7 @@ def __getIsCoolingOnServer() -> bool:
                 print()
                 return False
             case _:
-                print("Error. Try again")
+                apiLogError("Try again")
 
 
 def __getScenario(isCoolingOnServerVar: bool) -> int:
@@ -66,7 +67,7 @@ def __getScenario(isCoolingOnServerVar: bool) -> int:
                     print()
                     __showScenarios()
                 case _:
-                    print("Error. Try again")
+                    apiLogError("Try again")
 
 
 async def commonScenarioMenu() -> (bool, int):

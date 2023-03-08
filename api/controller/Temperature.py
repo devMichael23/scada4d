@@ -1,4 +1,7 @@
-from imports.General import *
+import asyncio
+
+from core.SCADAVars import SCADAVar
+from core.Vars import scadaVars_t
 
 
 async def __changeTemperature(temperature: SCADAVar,

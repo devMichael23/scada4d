@@ -1,7 +1,29 @@
-__errorMsg_t = "[ERROR] "
-__infoMsg_t = "[INFO] "
+from core.Logger import *
 
-msgServerHarmed = __errorMsg_t + "Server is harmed!"
-msgTaskNoCancel = __errorMsg_t + "Task not canceled"
-msgTaskNotWorkWithoutScenario = __errorMsg_t + "This task dont work without scenario"
-msgNotSet_t = __errorMsg_t + "Msg is not set"
+
+__apiLoggerManager = LoggerManager(levelLogCritical_t)
+
+msgServerHarmed = "Server is harmed!"
+msgTaskNoCancel = "Task not canceled"
+msgTaskNotWorkWithoutScenario = "This task dont work without scenario"
+msgNotSet = "Msg is not set"
+
+
+def apiLogInfo(msg):
+    __apiLoggerManager.log(msg, levelLogInfo_t)
+
+
+def apiLogDebug(msg):
+    __apiLoggerManager.log(msg, levelLogDebug_t)
+
+
+def apiLogWarning(msg):
+    __apiLoggerManager.log(msg, levelLogWarning_t)
+
+
+def apiLogError(msg):
+    __apiLoggerManager.log(msg, levelLogError_t)
+
+
+def apiLogCritical(msg):
+    __apiLoggerManager.log(msg, levelLogCritical_t)

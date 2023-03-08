@@ -1,9 +1,13 @@
-from imports.General import *
-from api.other.SCADAVars import SCADAVar
+import asyncio
+from asyncua import ua
+
+from core.SCADAVars import SCADAVar
 
 varNoSecurity = [ua.SecurityPolicyType.NoSecurity]
 varEventNotifier = ua.AttributeIds.EventNotifier
 varSubscribeToEvents = ua.EventNotifier.SubscribeToEvents
+
+cancelledException_t = asyncio.CancelledError
 
 double_t = ua.VariantType.Double
 bool_t = ua.VariantType.Boolean
@@ -14,7 +18,7 @@ scadaVars_t = dict[str, SCADAVar]
 true_t = True
 false_t = False
 
-idManager = "manager"
+idCore = "core"
 idCurrentTemp = "currentTemp"
 idHiTemp = "hiTemp"
 idHiHiTemp = "hiHiTemp"
@@ -24,3 +28,9 @@ idIsServerHarmed = "isServerHarmed"
 idFailureProbability = "failureProbability"
 idRefrigerantActive = "refrigerantActive"
 idIsOnCoolingWithServer = "isOnCoolingWithServer"
+
+levelLogInfo_t = 10
+levelLogDebug_t = 20
+levelLogWarning_t = 30
+levelLogError_t = 40
+levelLogCritical_t = 50
