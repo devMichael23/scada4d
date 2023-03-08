@@ -10,15 +10,15 @@ class TaskManager:
         self.__task = self.__loop.create_task(task)
         self.__msg = msgNotSetMsg_t
 
-    def cancelTask(self, msg):
+    async def cancel(self, msg):
         self.__task.cancel()
         self.__msg = msg
 
-    def doneTask(self, msg):
+    async def done(self, msg):
         self.__task.done()
         self.__msg = msg
 
-    def isTaskCanceled(self):
+    def isCanceled(self):
         return self.__task.cancelled()
 
     def getTask(self):
