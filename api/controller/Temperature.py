@@ -32,28 +32,28 @@ async def controllerTemperatureReduce(temperature: SCADAVar, limitValue):
                               code='-')
 
 
-async def controllerTemperatureReduceToLo(serverValues: serverValues_t):
+async def controllerTemperatureReduceToLo(serverValues: scadaVars_t):
     await controllerTemperatureReduce(
         serverValues[idCurrentTemp],
         await serverValues[idLoTemp].getValue()
     )
 
 
-async def controllerTemperatureReduceToLoLo(serverValues: serverValues_t):
+async def controllerTemperatureReduceToLoLo(serverValues: scadaVars_t):
     await controllerTemperatureReduce(
         serverValues[idCurrentTemp],
         await serverValues[idLoLoTemp].getValue()
     )
 
 
-async def controllerTemperatureIncreaseToHi(serverValues: serverValues_t):
+async def controllerTemperatureIncreaseToHi(serverValues: scadaVars_t):
     await controllerTemperatureIncrease(
         serverValues[idCurrentTemp],
         await serverValues[idHiTemp].getValue()
     )
 
 
-async def controllerTemperatureIncreaseToHiHi(serverValues: serverValues_t):
+async def controllerTemperatureIncreaseToHiHi(serverValues: scadaVars_t):
     await controllerTemperatureIncrease(
         serverValues[idCurrentTemp],
         await serverValues[idHiHiTemp].getValue()

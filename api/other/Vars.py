@@ -9,10 +9,10 @@ double_t = ua.VariantType.Double
 bool_t = ua.VariantType.Boolean
 int64_t = ua.VariantType.Int64
 
-serverValues_t = dict[str, SCADAVar]
+scadaVars_t = dict[str, SCADAVar]
 
-true_t = 0.1
-false_t = 0.00
+true_t = True
+false_t = False
 
 idManager = "manager"
 idCurrentTemp = "currentTemp"
