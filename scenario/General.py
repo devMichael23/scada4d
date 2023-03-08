@@ -16,7 +16,7 @@ async def sc_1():
             break
 
 
-async def startScenario():
+async def generalScenarioStart():
     isCoolingOnServer, scenario = await commonScenarioMenu()
 
     scTask = TaskManager(sc_1())

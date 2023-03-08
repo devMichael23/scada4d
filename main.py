@@ -33,7 +33,7 @@ async def main():
 
     await manager.server.start()
 
-    await startScenario()
+    await generalScenarioStart()
 
     while True:
         await asyncio.sleep(1)
