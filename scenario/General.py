@@ -16,11 +16,16 @@ async def sc_1():
             break
 
 
-async def generalScenarioStart():
+async def generalScenarioStart(scadaVars: scadaVars_t):
     isCoolingOnServer, scenario = await commonScenarioMenu()
 
     scTask = TaskManager(sc_1())
-    lTask = TaskManager(controllerLoopHarmedServer(scTask, 10))
+
+    lTask = TaskManager(
+        controllerLoopHarmedServer(
+            scTask, 40, scadaVars[idIsServerHarmed]
+        )
+    )
 
     while not await lTask.getTask():
         await asyncio.sleep(0)

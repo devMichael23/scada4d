@@ -16,7 +16,7 @@ async def main():
     refrigerantActive = await initRefrigerantActive(manager, room)
     isOnCoolingWithServer = await initIsOnCoolingWithServer(manager, room)
 
-    serverValues = {
+    scadaVars = {
         "manager": manager,
         "currentTemp": currentTemp,
         "hiTemp": hiTemp,
@@ -33,7 +33,7 @@ async def main():
 
     await manager.server.start()
 
-    await generalScenarioStart()
+    await generalScenarioStart(scadaVars)
 
     while True:
         await asyncio.sleep(1)
