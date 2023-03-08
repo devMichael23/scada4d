@@ -12,7 +12,7 @@ class LoggerManager:
         }
         self.__level = level
 
-    def __getKey(self, value):
+    def __getKey(self, value) -> str:
         for key, vals in self.__levels.items():
             if vals == value:
                 return key

@@ -16,23 +16,23 @@ class ModeManager:
             (ua.AttributeIds.UserAccessLevel, ua.AccessLevel.HistoryRead)
         ]
 
-    def read(self):
+    def read(self) -> list:
         return self.__read
 
-    def write(self):
+    def write(self) -> list:
         return self.__write
 
-    def history(self):
+    def history(self) -> list:
         return self.__history
 
-    def wr(self):
+    def wr(self) -> list:
         return self.read() + self.write()
 
-    def wh(self):
+    def wh(self) -> list:
         return self.write() + self.history()
 
-    def rh(self):
+    def rh(self) -> list:
         return self.read() + self.history()
 
-    def wrh(self):
+    def wrh(self) -> list:
         return self.wr() + self.history()

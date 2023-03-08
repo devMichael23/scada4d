@@ -8,6 +8,11 @@ from api.controller.Harmed import *
 from scenario.Common import *
 
 
+def serverHarmedFunc(task: asyncio.Task):
+    result = task.result()
+    apiLogCritical(result.getMsg())
+
+
 async def sc_1():
     index = 0
     while True:
@@ -30,7 +35,4 @@ async def generalScenarioStart(scadaVars: scadaVars_t):
         )
     )
 
-    while not await lTask.getTask():
-        await asyncio.sleep(0)
-
-    apiLogCritical(scTask.getMsg() + " " + str(isCoolingOnServer) + " " + str(scenario))
+    lTask.addCallBack(serverHarmedFunc)

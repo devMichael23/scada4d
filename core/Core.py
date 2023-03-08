@@ -9,7 +9,7 @@ from core.Modes import ModeManager
 
 
 class CoreManager:
-    def __init__(self, host, name):
+    def __init__(self, host: str, name: str):
         self.__ID = 0
         self.__host = host
         self.__name = name
@@ -64,26 +64,26 @@ class CoreManager:
                 variable, period=timedelta(minutes=1), count=100
             )
 
-    def getCoreServer(self):
+    def getCoreServer(self) -> Server:
         return self.__coreServer
 
-    def getCoreModeWrite(self):
+    def getCoreModeWrite(self) -> list:
         return self.__modes.write()
 
-    def getCoreModeRead(self):
+    def getCoreModeRead(self) -> list:
         return self.__modes.read()
 
-    def getCoreModeHistory(self):
+    def getCoreModeHistory(self) -> list:
         return self.__modes.history()
 
-    def getCoreModeWrRd(self):
+    def getCoreModeWrRd(self) -> list:
         return self.__modes.wr()
 
-    def getCoreModeWrHis(self):
+    def getCoreModeWrHis(self) -> list:
         return self.__modes.wh()
 
-    def getCoreModeRdHis(self):
+    def getCoreModeRdHis(self) -> list:
         return self.__modes.rh()
 
-    def getCoreModeWrRdHis(self):
+    def getCoreModeWrRdHis(self) -> list:
         return self.__modes.wrh()

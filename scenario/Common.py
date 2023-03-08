@@ -1,3 +1,5 @@
+from aioconsole import ainput
+
 from api.other.Logging import *
 from api.other.Checkers import *
 
@@ -36,11 +38,11 @@ def __checkIntChoice(bool_var: bool, int_var: int) -> bool:
         return False
 
 
-def __getIsCoolingOnServer() -> bool:
+async def __getIsCoolingOnServer() -> bool:
     print("Is Cooling Control on server side? (Y/N)")
     while True:
         print()
-        choice = input("> ")
+        choice = await ainput("> ")
         match choice:
             case 'Y':
                 print()
@@ -52,11 +54,11 @@ def __getIsCoolingOnServer() -> bool:
                 apiLogError("Try again")
 
 
-def __getScenario(isCoolingOnServerVar: bool) -> int:
+async def __getScenario(isCoolingOnServerVar: bool) -> int:
     __showScenarios()
     while True:
         print()
-        choice = input("> ")
+        choice = await ainput("> ")
 
         if checkIsInt(choice):
             if __checkIntChoice(isCoolingOnServerVar, int(choice)):
@@ -71,7 +73,7 @@ def __getScenario(isCoolingOnServerVar: bool) -> int:
 
 
 async def commonScenarioMenu() -> (bool, int):
-    isCoolingOnServerVar = __getIsCoolingOnServer()
-    scenarioVar = __getScenario(isCoolingOnServerVar)
+    isCoolingOnServerVar = await __getIsCoolingOnServer()
+    scenarioVar = await __getScenario(isCoolingOnServerVar)
 
     return isCoolingOnServerVar, scenarioVar

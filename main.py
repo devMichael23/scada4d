@@ -1,7 +1,10 @@
 import asyncio
+import logging
 
 from api.init.Server import *
 from api.other.Logging import *
+
+from tasks.TaskManager import *
 
 from scenario.General import *
 
@@ -10,6 +13,8 @@ core = CoreManager("opc.tcp://0.0.0.0:1984/", "Server Room")
 
 
 async def main():
+    logging.basicConfig(level=logging.CRITICAL)
+
     room = await initServerStart(core)
 
     currentTemp = await initCurrentTemp(core, room)

@@ -11,19 +11,22 @@ class TaskManager:
         self.__task = self.__loop.create_task(task)
         self.__msg = msgNotSet
 
-    async def cancel(self, msg):
+    async def cancel(self, msg: str):
         self.__task.cancel()
         self.__msg = msg
 
-    async def done(self, msg):
+    async def done(self, msg: str):
         self.__task.done()
         self.__msg = msg
 
-    def isCanceled(self):
+    def isCanceled(self) -> bool:
         return self.__task.cancelled()
 
-    def getTask(self):
+    def getTask(self) -> asyncio.Task:
         return self.__task
 
-    def getMsg(self):
+    def getMsg(self) -> str:
         return self.__msg
+
+    def addCallBack(self, func):
+        self.__task.add_done_callback(func)
