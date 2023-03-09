@@ -18,20 +18,19 @@ def __showScenarios():
     print("№1 - Temp > Hi; Cooling On; Temp < Lo; Cooling Off")
     print("№2 - Temp > Hi; Cooling On; Temp > HiHi; Temp < Lo; Cooling Off")
     print("№3 - Temp > Hi; Cooling On; Temp > HiHi; Server Harmed")
-    print("№4 - Temp > Hi; Cooling not On; Temp > HiHi; Server Harmed")
 
-    print("№5 - Temp > Hi; Cooling On; Temp < Lo; Cooling not Off; Temp < LoLo; Cooling Off")
-    print("№6 - Temp > Hi; Cooling On; Temp < Lo; Cooling not Off; Temp < LoLo; Server Harmed")
+    print("№4 - Temp > Hi; Cooling On; Temp < Lo; Cooling Off; Temp < LoLo; Temp > Lo")
+    print("№5 - Temp > Hi; Cooling On; Temp < Lo; Cooling Off; Temp < LoLo; Server Harmed")
     print()
 
-    print("№7 - Temp = normal; Cooling On; Temp < Lo; Cooling Off; (Only CC on server)")
-    print("№8 - Temp = normal; Cooling On; Temp < Lo; Cooling not Off; Temp < LoLo; Cooling Off; (Only CC on server)")
-    print("№9 - Temp = normal; Cooling On; Temp < Lo; Cooling not Off; Temp < LoLo; Server Harmed; (Only CC on server)")
+    print("№6 - Temp = normal; Cooling On; Temp < Lo; Cooling Off; (Only CC on server)")
+    print("№7 - Temp = normal; Cooling On; Temp < Lo; Cooling not Off; Temp < LoLo; Cooling Off; (Only CC on server)")
+    print("№8 - Temp = normal; Cooling On; Temp < Lo; Cooling not Off; Temp < LoLo; Server Harmed; (Only CC on server)")
 
 
 def __checkIntChoice(bool_var: bool, int_var: int) -> bool:
-    if 0 <= int(int_var) < 10:
-        if (not bool_var) and (int(int_var) >= 7):
+    if 0 <= int(int_var) <= 8:
+        if (not bool_var) and (int(int_var) >= 6):
             apiLogError("CC not on Server Side, but this scenario can start only if CC on Server Side. Try Again")
             return False
         else:

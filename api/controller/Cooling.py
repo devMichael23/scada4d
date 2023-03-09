@@ -7,6 +7,8 @@ async def __controllerCoolingChange(refrigerantActive: SCADAVar,
                                     value):
     if isCoolingOnServer:
         await refrigerantActive.setValue(value)
+    else:
+        return await refrigerantActive.getValue()
 
 
 async def controllerCoolingEnable(scadaVars: scadaVars_t):
