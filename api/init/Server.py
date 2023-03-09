@@ -11,62 +11,62 @@ async def initServerStart(core: CoreManager):
 
 async def initCurrentTemp(core: CoreManager, room) -> SCADAVar:
     var = await core.coreAddVariableToObject(
-        room, "Current_Temp", 50, int64_t, core.getCoreModeRdHis())
+        room, "Current_Temp", valCurrentTemp, int64_t, core.getCoreModeRdHis())
 
     return SCADAVar(var)
 
 
 async def initHiTemp(core: CoreManager, room) -> SCADAVar:
     var = await core.coreAddVariableToObject(
-        room, "Hi_Temp", 70, int64_t, core.getCoreModeWrRd())
+        room, "Hi_Temp", valHiTemp, int64_t, core.getCoreModeWrRd())
 
     return SCADAVar(var)
 
 
 async def initHiHiTemp(core: CoreManager, room) -> SCADAVar:
     var = await core.coreAddVariableToObject(
-        room, "HiHi_Temp", 90, int64_t, core.getCoreModeWrRd())
+        room, "HiHi_Temp", valHiHiTemp, int64_t, core.getCoreModeWrRd())
 
     return SCADAVar(var)
 
 
 async def initLoTemp(core: CoreManager, room) -> SCADAVar:
     var = await core.coreAddVariableToObject(
-        room, "Lo_Temp", 40, int64_t, core.getCoreModeWrRd())
+        room, "Lo_Temp", valLoTemp, int64_t, core.getCoreModeWrRd())
 
     return SCADAVar(var)
 
 
 async def initLoLoTemp(core: CoreManager, room) -> SCADAVar:
     var = await core.coreAddVariableToObject(
-        room, "LoLo_Temp", 25, int64_t, core.getCoreModeWrRd())
+        room, "LoLo_Temp", valLoLoTemp, int64_t, core.getCoreModeWrRd())
 
     return SCADAVar(var)
 
 
 async def initIsServerHarmed(core: CoreManager, room) -> SCADAVar:
     var = await core.coreAddVariableToObject(
-        room, "isServerHarmed", false_t, bool_t, core.getCoreModeRead())
+        room, "isServerHarmed", valIsServerHarmed, bool_t, core.getCoreModeRead())
 
     return SCADAVar(var)
 
 
 async def initFailureProbability(core: CoreManager, room) -> SCADAVar:
     var = await core.coreAddVariableToObject(
-        room, "FailureProbability", 10, int64_t, core.getCoreModeWrRd())
+        room, "FailureProbability", valFailureProbability, int64_t, core.getCoreModeWrRd())
 
     return SCADAVar(var)
 
 
 async def initRefrigerantActive(core: CoreManager, room) -> SCADAVar:
     var = await core.coreAddVariableToObject(
-        room, "RefrigerantActive", false_t, bool_t, core.getCoreModeWrRd())
+        room, "RefrigerantActive", valRefrigerantActive, bool_t, core.getCoreModeWrRd())
 
     return SCADAVar(var)
 
 
 async def initIsOnCoolingWithServer(core: CoreManager, room) -> SCADAVar:
     var = await core.coreAddVariableToObject(
-        room, "IsOnCoolingWithServer", false_t, bool_t, core.getCoreModeRead())
+        room, "IsOnCoolingWithServer", valIsOnCoolingWithServer, bool_t, core.getCoreModeRead())
 
     return SCADAVar(var)
