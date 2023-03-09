@@ -31,9 +31,12 @@ async def generalScenarioStart(scadaVars: scadaVars_t):
 
         lTask = TaskManager(
             controllerLoopHarmedServer(
-                scTask, 40, scadaVars[idIsServerHarmed]
+                scTask,
+                await scadaVars[idFailureProbability].getValue(),
+                scadaVars[idIsServerHarmed]
             )
         )
+
         lTask.addCallBack(serverHarmedFunc)
 
         await lTask.getTask()
