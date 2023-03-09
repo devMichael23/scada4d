@@ -28,5 +28,8 @@ class TaskManager:
     def getMsg(self) -> str:
         return self.__msg
 
+    def getResult(self):
+        return self.__task.result()
+
     def addCallBack(self, func):
         self.__task.add_done_callback(func)
