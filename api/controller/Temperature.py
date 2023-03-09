@@ -1,7 +1,9 @@
 import asyncio
 
 from core.SCADAVars import SCADAVar
-from core.Vars import scadaVars_t
+from core.Vars import *
+
+from api.other.Logging import *
 
 
 async def __changeTemperature(temperature: SCADAVar,
@@ -12,11 +14,13 @@ async def __changeTemperature(temperature: SCADAVar,
         case '-':
             while value >= limitValue:
                 value -= 1
+                apiLogDebug("new temp = " + str(value))
                 await temperature.setValue(value)
                 await asyncio.sleep(1)
         case '+':
             while value <= limitValue:
                 value += 1
+                apiLogDebug("new temp = " + str(value))
                 await temperature.setValue(value)
                 await asyncio.sleep(1)
 
@@ -35,29 +39,29 @@ async def controllerTemperatureReduce(temperature: SCADAVar, limitValue):
                               code='-')
 
 
-async def controllerTemperatureReduceToLo(serverValues: scadaVars_t):
+async def controllerTemperatureReduceToLo(serverValues: scadaVars_t, value=0):
     await controllerTemperatureReduce(
         serverValues[idCurrentTemp],
-        await serverValues[idLoTemp].getValue()
+        await serverValues[idLoTemp].getValue() - value
     )
 
 
-async def controllerTemperatureReduceToLoLo(serverValues: scadaVars_t):
+async def controllerTemperatureReduceToLoLo(serverValues: scadaVars_t, value=0):
     await controllerTemperatureReduce(
         serverValues[idCurrentTemp],
-        await serverValues[idLoLoTemp].getValue()
+        await serverValues[idLoLoTemp].getValue() - value
     )
 
 
-async def controllerTemperatureIncreaseToHi(serverValues: scadaVars_t):
+async def controllerTemperatureIncreaseToHi(serverValues: scadaVars_t, value=0):
     await controllerTemperatureIncrease(
         serverValues[idCurrentTemp],
-        await serverValues[idHiTemp].getValue()
+        await serverValues[idHiTemp].getValue() + value
     )
 
 
-async def controllerTemperatureIncreaseToHiHi(serverValues: scadaVars_t):
+async def controllerTemperatureIncreaseToHiHi(serverValues: scadaVars_t, value=0):
     await controllerTemperatureIncrease(
         serverValues[idCurrentTemp],
-        await serverValues[idHiHiTemp].getValue()
+        await serverValues[idHiHiTemp].getValue() + value
     )

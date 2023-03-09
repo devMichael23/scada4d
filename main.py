@@ -44,7 +44,7 @@ async def main():
 
     await core.getCoreServer().start()
 
-    await generalScenarioStart(scadaVars)
+    await scenarioGeneralStart(scadaVars)
 
     while True:
         await asyncio.sleep(1)

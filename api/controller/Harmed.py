@@ -9,10 +9,17 @@ from api.other.Checkers import *
 from api.other.Logging import *
 
 
-async def controllerLoopHarmedServer(task: TaskManager, probability: int, serverHarmedVar: SCADAVar) -> TaskManager:
-    while not checkIsServerHarmedWithProbability(probability):
-        apiLogInfo("No")
-        await asyncio.sleep(10)
-    await task.cancel(msgServerHarmed)
+async def controllerSetServerHarmed(serverHarmedVar: SCADAVar):
     await serverHarmedVar.setValue(true_t)
-    return task
+
+
+async def controllerLoopHarmedServer(task: TaskManager, probability: int, serverHarmedVar: SCADAVar):
+    try:
+        while not checkIsServerHarmedWithProbability(probability):
+            apiLogInfo("Server not harmed with " + str(probability) + "%")
+            await asyncio.sleep(10)
+        await task.cancel(msgServerHarmed)
+        await serverHarmedVar.setValue(true_t)
+        return True
+    except cancelledException_t:
+        return False

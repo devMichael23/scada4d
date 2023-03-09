@@ -1,5 +1,8 @@
 from aioconsole import ainput
 
+from core.Vars import *
+from core.SCADAVars import *
+
 from api.other.Logging import *
 from api.other.Checkers import *
 
@@ -10,7 +13,6 @@ def __showScenarios():
     print("========")
     print("? - Show this page again")
     print("0 - Reset params")
-    print("x - Exit")
     print()
 
     print("№1 - Temp > Hi; Cooling On; Temp < Lo; Cooling Off")
@@ -40,15 +42,15 @@ def __checkIntChoice(bool_var: bool, int_var: int) -> bool:
 
 
 async def __getIsCoolingOnServer() -> bool:
-    print("Is Cooling Control on server side? (Y/N)")
+    print("Is Cooling Control on server side? (Y/y;N/n)")
     while True:
         print()
         choice = await ainput("> ")
         match choice:
-            case 'Y':
+            case 'Y' | 'y':
                 print()
                 return True
-            case 'N':
+            case 'N' | 'n':
                 print()
                 return False
             case _:
@@ -75,7 +77,7 @@ async def __getScenario(isCoolingOnServerVar: bool):
                     apiLogError("Try again")
 
 
-async def commonScenarioMenu() -> (bool, int):
+async def scenarioCommonMenu() -> (bool, int):
     isCoolingOnServerVar = await __getIsCoolingOnServer()
     scenarioVar = await __getScenario(isCoolingOnServerVar)
 

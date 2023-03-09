@@ -10,8 +10,9 @@ class TaskManager:
         self.__loop = asyncio.get_event_loop()
         self.__task = self.__loop.create_task(task)
         self.__msg = msgNotSet
+        self.__harmedTask = None
 
-    async def cancel(self, msg: str):
+    async def cancel(self, msg: str = ''):
         self.__task.cancel()
         self.__msg = msg
 
@@ -30,6 +31,12 @@ class TaskManager:
 
     def getResult(self):
         return self.__task.result()
+
+    def setHarmedTask(self, task):
+        self.__harmedTask = task
+
+    def getHarmedTask(self) -> asyncio.Task:
+        return self.__harmedTask
 
     def addCallBack(self, func):
         self.__task.add_done_callback(func)

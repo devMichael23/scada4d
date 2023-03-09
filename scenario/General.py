@@ -6,28 +6,23 @@ from api.other.Logging import *
 from api.controller.Harmed import *
 
 from scenario.Common import *
+from scenario.Scenarios import *
+
+scenarios_d = {
+    1: scenarioOne
+}
 
 
-def serverHarmedFunc(task: asyncio.Task):
-    result = task.result()
-    apiLogCritical(result.getMsg())
-
-
-async def sc_1(scadaVars: scadaVars_t):
-    index = 0
+async def scenarioGeneralStart(scadaVars: scadaVars_t):
+    isCoolingOnServer, scenario = await scenarioCommonMenu()
     while True:
-        try:
-            apiLogDebug(index)
-            index += 1
-            await asyncio.sleep(1)
-        except cancelledException_t:
-            return scadaVars
+        if isCoolingOnServer:
+            await scadaVars[idIsOnCoolingWithServer].setValue(true_t)
+        else:
+            await scadaVars[idIsOnCoolingWithServer].setValue(false_t)
 
-
-async def generalScenarioStart(scadaVars: scadaVars_t):
-    isCoolingOnServer, scenario = await commonScenarioMenu()
-    while scenario != 'x':
-        scTask = TaskManager(sc_1(scadaVars))
+        scTask = TaskManager(
+            scenarios_d[scenario](scadaVars))
 
         lTask = TaskManager(
             controllerLoopHarmedServer(
@@ -37,10 +32,8 @@ async def generalScenarioStart(scadaVars: scadaVars_t):
             )
         )
 
-        lTask.addCallBack(serverHarmedFunc)
+        await scTask.getTask()
 
-        await lTask.getTask()
+        await lTask.cancel()
 
-        isCoolingOnServer, scenario = await commonScenarioMenu()
-
-    exit(0)
+        isCoolingOnServer, scenario = await scenarioCommonMenu()
