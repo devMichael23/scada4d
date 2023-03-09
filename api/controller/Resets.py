@@ -13,4 +13,3 @@ async def controllerResetIsServerHarmed(var: SCADAVar):
 async def controllerResetAll(scadaVars: scadaVars_t):
     await controllerResetCurrentTemp(scadaVars[idCurrentTemp])
     await controllerResetIsServerHarmed(scadaVars[idIsServerHarmed])
-

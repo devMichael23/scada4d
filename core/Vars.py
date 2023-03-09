@@ -46,6 +46,6 @@ levelLogError_t = 40
 levelLogCritical_t = 50
 levelLogAll_t = levelLogCritical_t
 
-timeToChangeTemp = 0.1
+timeToChangeTemp = 0.6
 timeToGetFailureProbability = 10
 timeWaitBeforeServerHarmed = 3
