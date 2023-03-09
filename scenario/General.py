@@ -13,7 +13,7 @@ def serverHarmedFunc(task: asyncio.Task):
     apiLogCritical(result.getMsg())
 
 
-async def sc_1():
+async def sc_1(scadaVars: scadaVars_t):
     index = 0
     while True:
         try:
@@ -21,18 +21,23 @@ async def sc_1():
             index += 1
             await asyncio.sleep(1)
         except cancelledException_t:
-            break
+            return scadaVars
 
 
 async def generalScenarioStart(scadaVars: scadaVars_t):
     isCoolingOnServer, scenario = await commonScenarioMenu()
+    while scenario != 'x':
+        scTask = TaskManager(sc_1(scadaVars))
 
-    scTask = TaskManager(sc_1())
-
-    lTask = TaskManager(
-        controllerLoopHarmedServer(
-            scTask, 40, scadaVars[idIsServerHarmed]
+        lTask = TaskManager(
+            controllerLoopHarmedServer(
+                scTask, 40, scadaVars[idIsServerHarmed]
+            )
         )
-    )
+        lTask.addCallBack(serverHarmedFunc)
 
-    lTask.addCallBack(serverHarmedFunc)
+        await lTask.getTask()
+
+        isCoolingOnServer, scenario = await commonScenarioMenu()
+
+    exit(0)
