@@ -10,7 +10,9 @@ from scenario.Common import *
 from scenario.Scenarios import *
 
 scenarios_d = {
-    1: scenarioOne
+    1: scenarioOne,
+    2: scenarioTwo,
+    3: scenarioThree
 }
 
 

@@ -9,8 +9,8 @@ from api.other.Checkers import *
 from api.other.Logging import *
 
 
-async def controllerSetServerHarmed(serverHarmedVar: SCADAVar):
-    await serverHarmedVar.setValue(true_t)
+async def controllerSetServerHarmed(serverVars: scadaVars_t):
+    await serverVars[idIsServerHarmed].setValue(true_t)
 
 
 async def controllerLoopHarmedServer(task: TaskManager, probability: int, serverHarmedVar: SCADAVar):
