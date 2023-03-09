@@ -35,7 +35,7 @@ async def controllerResetRefrigerantActive(var: SCADAVar):
 
 
 async def controllerResetIsOnCoolingWithServer(var: SCADAVar):
-    await var.setValue(idIsOnCoolingWithServer)
+    await var.setValue(valIsOnCoolingWithServer)
 
 
 async def controllerResetAll(scadaVars: scadaVars_t):

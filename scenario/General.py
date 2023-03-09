@@ -4,6 +4,7 @@ from core.Vars import *
 
 from api.other.Logging import *
 from api.controller.Harmed import *
+from api.controller.Resets import *
 
 from scenario.Common import *
 from scenario.Scenarios import *
@@ -15,25 +16,28 @@ scenarios_d = {
 
 async def scenarioGeneralStart(scadaVars: scadaVars_t):
     isCoolingOnServer, scenario = await scenarioCommonMenu()
+
     while True:
-        if isCoolingOnServer:
-            await scadaVars[idIsOnCoolingWithServer].setValue(true_t)
+        if scenario == 0:
+            await controllerResetAll(scadaVars)
         else:
-            await scadaVars[idIsOnCoolingWithServer].setValue(false_t)
+            if isCoolingOnServer:
+                await scadaVars[idIsOnCoolingWithServer].setValue(true_t)
+            else:
+                await scadaVars[idIsOnCoolingWithServer].setValue(false_t)
 
-        scTask = TaskManager(
-            scenarios_d[scenario](scadaVars))
+            scTask = TaskManager(
+                scenarios_d[scenario](scadaVars))
 
-        lTask = TaskManager(
-            controllerLoopHarmedServer(
-                scTask,
-                await scadaVars[idFailureProbability].getValue(),
-                scadaVars[idIsServerHarmed]
+            lTask = TaskManager(
+                controllerLoopHarmedServer(
+                    scTask,
+                    await scadaVars[idFailureProbability].getValue(),
+                    scadaVars[idIsServerHarmed]
+                )
             )
-        )
 
-        await scTask.getTask()
-
-        await lTask.cancel()
+            await scTask.getTask()
+            await lTask.cancel()
 
         isCoolingOnServer, scenario = await scenarioCommonMenu()
