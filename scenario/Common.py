@@ -19,7 +19,7 @@ def __showScenarios():
     print("№2 - Temp > Hi; Cooling On; Temp > HiHi; Temp < Lo; Cooling Off")
     print("№3 - Temp > Hi; Cooling On; Temp > HiHi; Server Harmed")
 
-    print("№4 - Temp > Hi; Cooling On; Temp < Lo; Cooling Off; Temp < LoLo; Temp > Lo")
+    print("№4 - Temp > Hi; Cooling On; Temp < Lo; Cooling Off; Temp < LoLo")
     print("№5 - Temp > Hi; Cooling On; Temp < Lo; Cooling Off; Temp < LoLo; Server Harmed")
     print()
 
@@ -29,7 +29,7 @@ def __showScenarios():
 
 
 def __checkIntChoice(bool_var: bool, int_var: int) -> bool:
-    if 0 <= int(int_var) <= 8:
+    if 0 <= int(int_var) < 9:
         if (not bool_var) and (int(int_var) >= 6):
             apiLogError("CC not on Server Side, but this scenario can start only if CC on Server Side. Try Again")
             return False

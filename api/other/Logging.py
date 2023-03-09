@@ -1,7 +1,7 @@
 from core.Logger import *
 
 
-__apiLoggerManager = LoggerManager(levelLogCritical_t)
+__apiLoggerManager = LoggerManager(levelLogAll_t)
 
 msgServerHarmed = "Server is harmed!"
 msgTaskNoCancel = "Task not canceled"

@@ -12,7 +12,12 @@ from scenario.Scenarios import *
 scenarios_d = {
     1: scenarioOne,
     2: scenarioTwo,
-    3: scenarioThree
+    3: scenarioThree,
+    4: scenarioFour,
+    5: scenarioFive,
+    6: scenarioSix,
+    7: scenarioSeven,
+    8: scenarioEight
 }
 
 

@@ -16,13 +16,13 @@ async def __changeTemperature(temperature: SCADAVar,
                 value -= 1
                 apiLogDebug("new temp = " + str(value))
                 await temperature.setValue(value)
-                await asyncio.sleep(1)
+                await asyncio.sleep(timeToChangeTemp)
         case '+':
             while value <= limitValue:
                 value += 1
                 apiLogDebug("new temp = " + str(value))
                 await temperature.setValue(value)
-                await asyncio.sleep(1)
+                await asyncio.sleep(timeToChangeTemp)
 
 
 async def controllerTemperatureIncrease(temperature: SCADAVar, limitValue):

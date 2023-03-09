@@ -17,7 +17,7 @@ async def controllerLoopHarmedServer(task: TaskManager, probability: int, server
     try:
         while not checkIsServerHarmedWithProbability(probability):
             apiLogInfo("Server not harmed with " + str(probability) + "%")
-            await asyncio.sleep(10)
+            await asyncio.sleep(timeToGetFailureProbability)
         await task.cancel(msgServerHarmed)
         await serverHarmedVar.setValue(true_t)
         return True
