@@ -10,6 +10,7 @@ def __showScenarios():
     print("========")
     print("? - Show this page again")
     print("0 - Reset params")
+    print("x - Exit")
     print()
 
     print("№1 - Temp > Hi; Cooling On; Temp < Lo; Cooling Off")
@@ -54,7 +55,7 @@ async def __getIsCoolingOnServer() -> bool:
                 apiLogError("Try again")
 
 
-async def __getScenario(isCoolingOnServerVar: bool) -> int:
+async def __getScenario(isCoolingOnServerVar: bool):
     __showScenarios()
     while True:
         print()
@@ -68,6 +69,8 @@ async def __getScenario(isCoolingOnServerVar: bool) -> int:
                 case '?':
                     print()
                     __showScenarios()
+                case 'x':
+                    return choice
                 case _:
                     apiLogError("Try again")
 
