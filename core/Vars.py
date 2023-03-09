@@ -29,6 +29,16 @@ idFailureProbability = "failureProbability"
 idRefrigerantActive = "refrigerantActive"
 idIsOnCoolingWithServer = "isOnCoolingWithServer"
 
+valCurrentTemp = 50
+valHiTemp = 70
+valHiHiTemp = 90
+valLoTemp = 40
+valLoLoTemp = 25
+valIsServerHarmed = false_t
+valFailureProbability = 10
+valRefrigerantActive = false_t
+valIsOnCoolingWithServer = false_t
+
 levelLogInfo_t = 10
 levelLogDebug_t = 20
 levelLogWarning_t = 30
