@@ -40,7 +40,7 @@ def __checkIntChoice(bool_var: bool, int_var: int) -> bool:
         return False
 
 
-async def __getIsCoolingOnServer() -> bool:
+async def __getIsCoolingOnServer(scenarioVar: int):
     print("Is Cooling Control on server side? (Y/y;N/n)")
     while True:
         print()
@@ -50,21 +50,24 @@ async def __getIsCoolingOnServer() -> bool:
                 print()
                 return True
             case 'N' | 'n':
-                print()
-                return False
+                if __checkIntChoice(False, scenarioVar):
+                    print()
+                    return False
+                else:
+                    print()
+                    return None
             case _:
                 apiLogError("Try again")
 
 
-async def __getScenario(isCoolingOnServerVar: bool):
+async def __getScenario():
     __showScenarios()
     while True:
         print()
         choice = await ainput("> ")
 
         if checkIsInt(choice):
-            if __checkIntChoice(isCoolingOnServerVar, int(choice)):
-                return int(choice)
+            return int(choice)
         else:
             match choice:
                 case '?':
@@ -77,7 +80,12 @@ async def __getScenario(isCoolingOnServerVar: bool):
 
 
 async def scenarioCommonMenu() -> (bool, int):
-    isCoolingOnServerVar = await __getIsCoolingOnServer()
-    scenarioVar = await __getScenario(isCoolingOnServerVar)
+    isCoolingOnServerVar = None
+    scenarioVar = None
+
+    while isCoolingOnServerVar is None:
+        scenarioVar = await __getScenario()
+        if scenarioVar != 0:
+            isCoolingOnServerVar = await __getIsCoolingOnServer(scenarioVar)
 
     return isCoolingOnServerVar, scenarioVar
