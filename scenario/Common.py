@@ -87,5 +87,7 @@ async def scenarioCommonMenu() -> (bool, int):
         scenarioVar = await __getScenario()
         if scenarioVar != 0:
             isCoolingOnServerVar = await __getIsCoolingOnServer(scenarioVar)
+        else:
+            isCoolingOnServerVar = False
 
     return isCoolingOnServerVar, scenarioVar

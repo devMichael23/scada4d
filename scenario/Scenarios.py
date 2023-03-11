@@ -81,6 +81,8 @@ async def scenarioThree(scadaVars: scadaVars_t):
         await controllerSetServerHarmed(scadaVars)
         apiLogCritical(msgServerHarmed + " Because it overheated")
 
+        await controllerCoolingDisable(scadaVars)
+
         await asyncio.sleep(0)
         apiLogInfo("Scenario 3 done success")
 
@@ -141,6 +143,8 @@ async def scenarioFive(scadaVars: scadaVars_t):
 
         await controllerSetServerHarmed(scadaVars)
         apiLogCritical(msgServerHarmed + " Because it frozen")
+
+        await controllerCoolingDisable(scadaVars)
 
         await asyncio.sleep(0)
         apiLogInfo("Scenario 5 done success")
@@ -210,6 +214,8 @@ async def scenarioEight(scadaVars: scadaVars_t):
 
         await controllerSetServerHarmed(scadaVars)
         apiLogCritical(msgServerHarmed + " Because it frozen")
+
+        await controllerCoolingDisable(scadaVars)
 
         await asyncio.sleep(0)
         apiLogInfo("Scenario 8 done success")
