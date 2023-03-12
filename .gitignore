@@ -1,4 +1,3 @@
 pyproject.toml
-Other/*
 /.idea/*
 core/database/server_room.sql
