@@ -1,4 +1,4 @@
-from core.Logger import *
+from logs.LoggerManager import *
 
 
 __apiLoggerManager = LoggerManager(levelLogAll_t)
