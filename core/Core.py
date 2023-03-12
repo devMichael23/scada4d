@@ -4,7 +4,6 @@ from datetime import timedelta
 import asyncio
 
 from core.Vars import *
-from logs.LoggerManager import *
 from core.Modes import ModeManager
 
 
